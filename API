@@ -1,0 +1,86 @@
+sample.
+The file sample.env provides the list of all the environment variables that are required to run this app.
+
+Routes
+
+1. GET /api
+
+It lists all the available routes.
+
+Query - /api
+
+Sample Response:
+You're at the index of bank service api.
+Try the following routes:
+1. GET - /api/bank?ifsc="bank_ifsc_code"
+2. GET - /api/branches?bank_name="bank_name"&city="city"
+3. GET - /api/token
+
+
+2. GET /api/token
+
+Returns the JWT token which is required for authentication.
+
+Query /api/token
+
+Sample Response:
+
+{
+    "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c..."
+}
+
+3. /api/bank
+
+Required query param - [ifsc]
+Optional query param - [limit, offset]
+Required Header - Authorization
+
+Query = /api/bank?ifsc=ABHY0065001
+
+Sample Response:
+
+[
+    {
+        "bank_id": 13,
+        "bank_name": "DTS COOPERATIVE BANK LIMITED",
+        "ifsc": "DTS0098001",
+        "branch": "RTGS-HO",
+        "address": "DTS BANK BLDG., B.NO.67, DTS NAGAR, KURLA (E),  BANGALORE-400024",
+        "city": " BANGALORE",
+        "district": "GREATER  BANGALORE",
+        "state": "KANATAKA"
+    }
+]
+
+4. /api/branches
+
+Required query param - [bank_name, city]
+Optional query param - [limit, offset]
+Required Header - Authorization
+
+Query = /api/branches?bank_name=DTS COOPERATIVE BANK LIMITED&city= BANGALORE&limit=2
+
+Sample Response:
+
+[
+    {
+        "bank_id": 13,
+        "bank_name": "DTS COOPERATIVE BANK LIMITED",
+        "ifsc": "DTS0098001",
+        "branch": "RTGS-HO",
+        "address": "DTS BANK BLDG., B.NO.67, DTS NAGAR, SAGAR (E),  BANGALORE-330045",
+        "city": " BANGALORE",
+        "district": "GREATER  BANGALORE",
+        "state": "KANATAKA"
+    },
+    {
+        "bank_id": 13,
+        "bank_name": "DTS COOPERATIVE BANK LIMITED",
+        "ifsc": "DTS0098002",
+        "branch": "DTSNAGAR",
+        "address": "DTS EDUCATION SOCIETY, OPP. BLDG. NO. 35, DTS NAGAR, KALACHORE,  BANGALORE - 330043",
+        "city": " BANGALORE",
+        "district": "GREATER BANGALORE",
+        "state": "KANATAKA"
+    }
+]
